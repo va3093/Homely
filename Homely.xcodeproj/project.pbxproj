@@ -1,0 +1,631 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED60A4DF1BBFFF21001396FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A4DE1BBFFF21001396FA /* AppDelegate.swift */; };
+		ED60A4E11BBFFF21001396FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A4E01BBFFF21001396FA /* ViewController.swift */; };
+		ED60A4E41BBFFF21001396FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED60A4E21BBFFF21001396FA /* Main.storyboard */; };
+		ED60A4E61BBFFF21001396FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED60A4E51BBFFF21001396FA /* Assets.xcassets */; };
+		ED60A4E91BBFFF21001396FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED60A4E71BBFFF21001396FA /* LaunchScreen.storyboard */; };
+		ED60A4F41BBFFF21001396FA /* HomelyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A4F31BBFFF21001396FA /* HomelyTests.swift */; };
+		ED60A4FF1BBFFF21001396FA /* HomelyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A4FE1BBFFF21001396FA /* HomelyUITests.swift */; };
+		ED60A50D1BBFFFA5001396FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A50C1BBFFFA5001396FA /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		ED60A5101BC00005001396FA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A50E1BC00005001396FA /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
+		ED60A5111BC00005001396FA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A50F1BC00005001396FA /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
+		ED60A5131BC00525001396FA /* GiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A5121BC00525001396FA /* GiveViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		ED60A51C1BC0A59B001396FA /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A5171BC0A50B001396FA /* Stripe.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ED60A54E1BC10BF1001396FA /* STPTestAddressStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A5411BC10BF1001396FA /* STPTestAddressStore.m */; settings = {ASSET_TAGS = (); }; };
+		ED60A54F1BC10BF1001396FA /* STPTestCardStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A5431BC10BF1001396FA /* STPTestCardStore.m */; settings = {ASSET_TAGS = (); }; };
+		ED60A5501BC10BF1001396FA /* STPTestDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A5461BC10BF1001396FA /* STPTestDataTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ED60A5511BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A5481BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ED60A5521BC10BF1001396FA /* STPTestPaymentSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A54A1BC10BF1001396FA /* STPTestPaymentSummaryViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ED60A5531BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED60A54B1BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		ED60A5541BC10BF1001396FA /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A54D1BC10BF1001396FA /* STPTestShippingMethodStore.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED60A4F01BBFFF21001396FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED60A4D31BBFFF21001396FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED60A4DA1BBFFF21001396FA;
+			remoteInfo = Homely;
+		};
+		ED60A4FB1BBFFF21001396FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED60A4D31BBFFF21001396FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED60A4DA1BBFFF21001396FA;
+			remoteInfo = Homely;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ED60A51E1BC0A59B001396FA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		ED60A4DB1BBFFF21001396FA /* Homely.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homely.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED60A4DE1BBFFF21001396FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED60A4E01BBFFF21001396FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED60A4E31BBFFF21001396FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED60A4E51BBFFF21001396FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED60A4E81BBFFF21001396FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED60A4EA1BBFFF21001396FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED60A4EF1BBFFF21001396FA /* HomelyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomelyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED60A4F31BBFFF21001396FA /* HomelyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomelyTests.swift; sourceTree = "<group>"; };
+		ED60A4F51BBFFF21001396FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED60A4FA1BBFFF21001396FA /* HomelyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomelyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED60A4FE1BBFFF21001396FA /* HomelyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomelyUITests.swift; sourceTree = "<group>"; };
+		ED60A5001BBFFF21001396FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED60A50C1BBFFFA5001396FA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		ED60A50E1BC00005001396FA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		ED60A50F1BC00005001396FA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		ED60A5121BC00525001396FA /* GiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiveViewController.swift; sourceTree = "<group>"; };
+		ED60A5161BC0A135001396FA /* Homely.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Homely.entitlements; sourceTree = "<group>"; };
+		ED60A5171BC0A50B001396FA /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Stripe.framework; sourceTree = "<group>"; };
+		ED60A5211BC0AFDE001396FA /* Homely-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Homely-Bridging-Header.h"; sourceTree = "<group>"; };
+		ED60A53F1BC10BF1001396FA /* ApplePayStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayStubs.h; sourceTree = "<group>"; };
+		ED60A5401BC10BF1001396FA /* STPTestAddressStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestAddressStore.h; sourceTree = "<group>"; };
+		ED60A5411BC10BF1001396FA /* STPTestAddressStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestAddressStore.m; sourceTree = "<group>"; };
+		ED60A5421BC10BF1001396FA /* STPTestCardStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestCardStore.h; sourceTree = "<group>"; };
+		ED60A5431BC10BF1001396FA /* STPTestCardStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestCardStore.m; sourceTree = "<group>"; };
+		ED60A5441BC10BF1001396FA /* STPTestDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestDataStore.h; sourceTree = "<group>"; };
+		ED60A5451BC10BF1001396FA /* STPTestDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestDataTableViewController.h; sourceTree = "<group>"; };
+		ED60A5461BC10BF1001396FA /* STPTestDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestDataTableViewController.m; sourceTree = "<group>"; };
+		ED60A5471BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestPaymentAuthorizationViewController.h; sourceTree = "<group>"; };
+		ED60A5481BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestPaymentAuthorizationViewController.m; sourceTree = "<group>"; };
+		ED60A5491BC10BF1001396FA /* STPTestPaymentSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestPaymentSummaryViewController.h; sourceTree = "<group>"; };
+		ED60A54A1BC10BF1001396FA /* STPTestPaymentSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestPaymentSummaryViewController.m; sourceTree = "<group>"; };
+		ED60A54B1BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STPTestPaymentSummaryViewController.xib; sourceTree = "<group>"; };
+		ED60A54C1BC10BF1001396FA /* STPTestShippingMethodStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestShippingMethodStore.h; sourceTree = "<group>"; };
+		ED60A54D1BC10BF1001396FA /* STPTestShippingMethodStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestShippingMethodStore.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED60A4D81BBFFF21001396FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED60A5101BC00005001396FA /* FBSDKLoginKit.framework in Frameworks */,
+				ED60A5111BC00005001396FA /* FBSDKCoreKit.framework in Frameworks */,
+				ED60A51C1BC0A59B001396FA /* Stripe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED60A4EC1BBFFF21001396FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED60A4F71BBFFF21001396FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED60A4D21BBFFF21001396FA = {
+			isa = PBXGroup;
+			children = (
+				ED60A4DD1BBFFF21001396FA /* Homely */,
+				ED60A4F21BBFFF21001396FA /* HomelyTests */,
+				ED60A4FD1BBFFF21001396FA /* HomelyUITests */,
+				ED60A4DC1BBFFF21001396FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED60A4DC1BBFFF21001396FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED60A4DB1BBFFF21001396FA /* Homely.app */,
+				ED60A4EF1BBFFF21001396FA /* HomelyTests.xctest */,
+				ED60A4FA1BBFFF21001396FA /* HomelyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED60A4DD1BBFFF21001396FA /* Homely */ = {
+			isa = PBXGroup;
+			children = (
+				ED60A5171BC0A50B001396FA /* Stripe.framework */,
+				ED60A5161BC0A135001396FA /* Homely.entitlements */,
+				ED60A50E1BC00005001396FA /* FBSDKLoginKit.framework */,
+				ED60A50F1BC00005001396FA /* FBSDKCoreKit.framework */,
+				ED60A4DE1BBFFF21001396FA /* AppDelegate.swift */,
+				ED60A4E01BBFFF21001396FA /* ViewController.swift */,
+				ED60A4E21BBFFF21001396FA /* Main.storyboard */,
+				ED60A4E51BBFFF21001396FA /* Assets.xcassets */,
+				ED60A4E71BBFFF21001396FA /* LaunchScreen.storyboard */,
+				ED60A4EA1BBFFF21001396FA /* Info.plist */,
+				ED60A50C1BBFFFA5001396FA /* LoginViewController.swift */,
+				ED60A5121BC00525001396FA /* GiveViewController.swift */,
+				ED60A5211BC0AFDE001396FA /* Homely-Bridging-Header.h */,
+				ED60A53F1BC10BF1001396FA /* ApplePayStubs.h */,
+				ED60A5401BC10BF1001396FA /* STPTestAddressStore.h */,
+				ED60A5411BC10BF1001396FA /* STPTestAddressStore.m */,
+				ED60A5421BC10BF1001396FA /* STPTestCardStore.h */,
+				ED60A5431BC10BF1001396FA /* STPTestCardStore.m */,
+				ED60A5441BC10BF1001396FA /* STPTestDataStore.h */,
+				ED60A5451BC10BF1001396FA /* STPTestDataTableViewController.h */,
+				ED60A5461BC10BF1001396FA /* STPTestDataTableViewController.m */,
+				ED60A5471BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.h */,
+				ED60A5481BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.m */,
+				ED60A5491BC10BF1001396FA /* STPTestPaymentSummaryViewController.h */,
+				ED60A54A1BC10BF1001396FA /* STPTestPaymentSummaryViewController.m */,
+				ED60A54B1BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib */,
+				ED60A54C1BC10BF1001396FA /* STPTestShippingMethodStore.h */,
+				ED60A54D1BC10BF1001396FA /* STPTestShippingMethodStore.m */,
+			);
+			path = Homely;
+			sourceTree = "<group>";
+		};
+		ED60A4F21BBFFF21001396FA /* HomelyTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED60A4F31BBFFF21001396FA /* HomelyTests.swift */,
+				ED60A4F51BBFFF21001396FA /* Info.plist */,
+			);
+			path = HomelyTests;
+			sourceTree = "<group>";
+		};
+		ED60A4FD1BBFFF21001396FA /* HomelyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED60A4FE1BBFFF21001396FA /* HomelyUITests.swift */,
+				ED60A5001BBFFF21001396FA /* Info.plist */,
+			);
+			path = HomelyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED60A4DA1BBFFF21001396FA /* Homely */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED60A5031BBFFF21001396FA /* Build configuration list for PBXNativeTarget "Homely" */;
+			buildPhases = (
+				ED60A4D71BBFFF21001396FA /* Sources */,
+				ED60A4D81BBFFF21001396FA /* Frameworks */,
+				ED60A4D91BBFFF21001396FA /* Resources */,
+				ED60A51E1BC0A59B001396FA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Homely;
+			productName = Homely;
+			productReference = ED60A4DB1BBFFF21001396FA /* Homely.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED60A4EE1BBFFF21001396FA /* HomelyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED60A5061BBFFF21001396FA /* Build configuration list for PBXNativeTarget "HomelyTests" */;
+			buildPhases = (
+				ED60A4EB1BBFFF21001396FA /* Sources */,
+				ED60A4EC1BBFFF21001396FA /* Frameworks */,
+				ED60A4ED1BBFFF21001396FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED60A4F11BBFFF21001396FA /* PBXTargetDependency */,
+			);
+			name = HomelyTests;
+			productName = HomelyTests;
+			productReference = ED60A4EF1BBFFF21001396FA /* HomelyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED60A4F91BBFFF21001396FA /* HomelyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED60A5091BBFFF21001396FA /* Build configuration list for PBXNativeTarget "HomelyUITests" */;
+			buildPhases = (
+				ED60A4F61BBFFF21001396FA /* Sources */,
+				ED60A4F71BBFFF21001396FA /* Frameworks */,
+				ED60A4F81BBFFF21001396FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED60A4FC1BBFFF21001396FA /* PBXTargetDependency */,
+			);
+			name = HomelyUITests;
+			productName = HomelyUITests;
+			productReference = ED60A4FA1BBFFF21001396FA /* HomelyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED60A4D31BBFFF21001396FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = ysterslot;
+				TargetAttributes = {
+					ED60A4DA1BBFFF21001396FA = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 67H9249Q8Z;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
+					};
+					ED60A4EE1BBFFF21001396FA = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = ED60A4DA1BBFFF21001396FA;
+					};
+					ED60A4F91BBFFF21001396FA = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = ED60A4DA1BBFFF21001396FA;
+					};
+				};
+			};
+			buildConfigurationList = ED60A4D61BBFFF21001396FA /* Build configuration list for PBXProject "Homely" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED60A4D21BBFFF21001396FA;
+			productRefGroup = ED60A4DC1BBFFF21001396FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED60A4DA1BBFFF21001396FA /* Homely */,
+				ED60A4EE1BBFFF21001396FA /* HomelyTests */,
+				ED60A4F91BBFFF21001396FA /* HomelyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED60A4D91BBFFF21001396FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED60A4E91BBFFF21001396FA /* LaunchScreen.storyboard in Resources */,
+				ED60A4E61BBFFF21001396FA /* Assets.xcassets in Resources */,
+				ED60A5531BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib in Resources */,
+				ED60A4E41BBFFF21001396FA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED60A4ED1BBFFF21001396FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED60A4F81BBFFF21001396FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED60A4D71BBFFF21001396FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED60A5521BC10BF1001396FA /* STPTestPaymentSummaryViewController.m in Sources */,
+				ED60A50D1BBFFFA5001396FA /* LoginViewController.swift in Sources */,
+				ED60A5131BC00525001396FA /* GiveViewController.swift in Sources */,
+				ED60A5501BC10BF1001396FA /* STPTestDataTableViewController.m in Sources */,
+				ED60A5541BC10BF1001396FA /* STPTestShippingMethodStore.m in Sources */,
+				ED60A5511BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.m in Sources */,
+				ED60A4E11BBFFF21001396FA /* ViewController.swift in Sources */,
+				ED60A4DF1BBFFF21001396FA /* AppDelegate.swift in Sources */,
+				ED60A54E1BC10BF1001396FA /* STPTestAddressStore.m in Sources */,
+				ED60A54F1BC10BF1001396FA /* STPTestCardStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED60A4EB1BBFFF21001396FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED60A4F41BBFFF21001396FA /* HomelyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED60A4F61BBFFF21001396FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED60A4FF1BBFFF21001396FA /* HomelyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED60A4F11BBFFF21001396FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED60A4DA1BBFFF21001396FA /* Homely */;
+			targetProxy = ED60A4F01BBFFF21001396FA /* PBXContainerItemProxy */;
+		};
+		ED60A4FC1BBFFF21001396FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED60A4DA1BBFFF21001396FA /* Homely */;
+			targetProxy = ED60A4FB1BBFFF21001396FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED60A4E21BBFFF21001396FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED60A4E31BBFFF21001396FA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED60A4E71BBFFF21001396FA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED60A4E81BBFFF21001396FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED60A5011BBFFF21001396FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED60A5021BBFFF21001396FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED60A5041BBFFF21001396FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Homely/Homely.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Homely",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					STRIP_ENABLE_APPLEPAY,
+				);
+				INFOPLIST_FILE = Homely/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ysterslot.Homely;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Homely/Homely-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED60A5051BBFFF21001396FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Homely/Homely.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Homely",
+				);
+				INFOPLIST_FILE = Homely/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ysterslot.Homely;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Homely/Homely-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		ED60A5071BBFFF21001396FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HomelyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ysterslot.HomelyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Homely.app/Homely";
+			};
+			name = Debug;
+		};
+		ED60A5081BBFFF21001396FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HomelyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ysterslot.HomelyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Homely.app/Homely";
+			};
+			name = Release;
+		};
+		ED60A50A1BBFFF21001396FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HomelyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ysterslot.HomelyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Homely;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		ED60A50B1BBFFF21001396FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HomelyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ysterslot.HomelyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Homely;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED60A4D61BBFFF21001396FA /* Build configuration list for PBXProject "Homely" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED60A5011BBFFF21001396FA /* Debug */,
+				ED60A5021BBFFF21001396FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED60A5031BBFFF21001396FA /* Build configuration list for PBXNativeTarget "Homely" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED60A5041BBFFF21001396FA /* Debug */,
+				ED60A5051BBFFF21001396FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED60A5061BBFFF21001396FA /* Build configuration list for PBXNativeTarget "HomelyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED60A5071BBFFF21001396FA /* Debug */,
+				ED60A5081BBFFF21001396FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED60A5091BBFFF21001396FA /* Build configuration list for PBXNativeTarget "HomelyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED60A50A1BBFFF21001396FA /* Debug */,
+				ED60A50B1BBFFF21001396FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED60A4D31BBFFF21001396FA /* Project object */;
+}
