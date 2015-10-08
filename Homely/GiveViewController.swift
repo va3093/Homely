@@ -39,12 +39,45 @@ class GiveViewController: UIViewController, PKPaymentAuthorizationViewController
 	
 	@IBOutlet weak var shareButton: UIButton!
 	
+	var nameValue: String?
+	
+	var charityValue: String?
+	
+	var profileImageURL: String?
+	
 	let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.name?.text = self.nameValue
+//		self.Charity?.text = self.charityValue
+		
+		if let url = NSURL(string: self.profileImageURL ?? "" ) {
+			let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+				if let nData = data, image = UIImage(data: nData) {
+					
+					dispatch_async(dispatch_get_main_queue(),{
+						
+						self.ProfileImage.image = image
+						
+					})
+					
+					
+					
+					
+				}
+			}
+			task.resume()
+		}
+
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.ProfileImage.image = UIImage(named: "profile")
+		
+		
+//		self.ProfileImage.image = UIImage(named: "profile")
 		self.slider.value = 0.0
 		
 		self.sliderBottom.layer.cornerRadius = self.sliderBottom.frame.height/2

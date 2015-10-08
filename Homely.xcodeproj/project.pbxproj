@@ -26,6 +26,7 @@
 		ED60A5521BC10BF1001396FA /* STPTestPaymentSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A54A1BC10BF1001396FA /* STPTestPaymentSummaryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ED60A5531BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED60A54B1BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		ED60A5541BC10BF1001396FA /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ED60A54D1BC10BF1001396FA /* STPTestShippingMethodStore.m */; settings = {ASSET_TAGS = (); }; };
+		EDE21CEB1BC6F278007D3C74 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE21CEA1BC6F278007D3C74 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		ED60A54B1BC10BF1001396FA /* STPTestPaymentSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STPTestPaymentSummaryViewController.xib; sourceTree = "<group>"; };
 		ED60A54C1BC10BF1001396FA /* STPTestShippingMethodStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestShippingMethodStore.h; sourceTree = "<group>"; };
 		ED60A54D1BC10BF1001396FA /* STPTestShippingMethodStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestShippingMethodStore.m; sourceTree = "<group>"; };
+		EDE21CEA1BC6F278007D3C74 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				ED60A50C1BBFFFA5001396FA /* LoginViewController.swift */,
 				ED60A5121BC00525001396FA /* GiveViewController.swift */,
 				ED60A5211BC0AFDE001396FA /* Homely-Bridging-Header.h */,
+				EDE21CEA1BC6F278007D3C74 /* SwiftyJSON.swift */,
 				ED60A53F1BC10BF1001396FA /* ApplePayStubs.h */,
 				ED60A5401BC10BF1001396FA /* STPTestAddressStore.h */,
 				ED60A5411BC10BF1001396FA /* STPTestAddressStore.m */,
@@ -342,6 +345,7 @@
 				ED60A5521BC10BF1001396FA /* STPTestPaymentSummaryViewController.m in Sources */,
 				ED60A50D1BBFFFA5001396FA /* LoginViewController.swift in Sources */,
 				ED60A5131BC00525001396FA /* GiveViewController.swift in Sources */,
+				EDE21CEB1BC6F278007D3C74 /* SwiftyJSON.swift in Sources */,
 				ED60A5501BC10BF1001396FA /* STPTestDataTableViewController.m in Sources */,
 				ED60A5541BC10BF1001396FA /* STPTestShippingMethodStore.m in Sources */,
 				ED60A5511BC10BF1001396FA /* STPTestPaymentAuthorizationViewController.m in Sources */,

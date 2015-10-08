@@ -14,11 +14,10 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
 	
 	@IBOutlet weak var segmentedControl: UISegmentedControl!
-	
-	var userModels = [
-		UserModel(name: "David", lastDonated: "Last Donated £20, 3 Days ago", image: UIImage(named: "david") ?? UIImage()),
-		UserModel(name: "Judith", lastDonated: "Last Donated £15, a week ago", image: UIImage(named: "judith") ?? UIImage()),
-		UserModel(name: "Gordan", lastDonated: "Last Donated £20, 1 month ago", image: UIImage(named: "profile") ?? UIImage()),
+	var userModels: [UserModel] = [
+//		UserModel(name: "David", lastDonated: "Last Donated £20, 3 Days ago", image: UIImage(named: "david") ?? UIImage()),
+//		UserModel(name: "Judith", lastDonated: "Last Donated £15, a week ago", image: UIImage(named: "judith") ?? UIImage()),
+//		UserModel(name: "Gordan", lastDonated: "Last Donated £20, 1 month ago", image: UIImage(named: "profile") ?? UIImage()),
 	]
 	
 	var userModel: UserModel?
@@ -58,13 +57,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 			locationManager.startMonitoringForRegion(beaconRegion)
 			//			locationManager.startRangingBeaconsInRegion(beaconRegion)
 			
+			
+			
 		}
 		
 		locationManager.startUpdatingLocation()
 
 		
 //		self.performSegueWithIdentifier("GiverScreen", sender: self)
-
 		
 	}
 	
@@ -79,7 +79,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 				notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
 				//				notification.category = "TODO_CATEGORY"
 				UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-				self.presentGiverScreen()
+				let urlString = "http://homely-webapi.herokuapp.com/api/receivers/?beacon_id=\(reg.minor)"
+				
+				
+				if let url = NSURL(string: urlString) {
+					let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+						if let nData = data {
+							let json = JSON(data: nData)
+							if let userDict = json["results"].arrayValue.first {
+								let user = UserModel(name: userDict["name"].stringValue ?? "", lastDonated: userDict["last_donated"].stringValue ?? "", image: nil, imageURL: userDict["photo"].stringValue ?? "", beaconId: userDict["beacon_id"].stringValue ?? "", charityURLString: userDict["charity"].stringValue ?? "")
+								self.userModel = user
+								dispatch_async(dispatch_get_main_queue(),{
+									
+									self.presentGiverScreen()
+									
+									
+								})
+								
+							}
+							
+							
+						}
+					}
+					task.resume()
+				}
+
+				
 			}
 		}
 	
@@ -105,7 +130,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3
+		return self.userModels.count
+		
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -151,7 +177,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 			NSLog("You entered the region\n\n\n\n\n\n")
 			
 			if let reg = region as? CLBeaconRegion {
-//				manager.startRangingBeaconsInRegion(reg)
+				manager.startRangingBeaconsInRegion(reg)
 				manager.startUpdatingLocation()
 
 			}
@@ -165,15 +191,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 				
 				NSLog("You exited the region")
 				
-//				let notification = UILocalNotification()
-//				notification.alertBody = "entered" // text that will be displayed in the notification
-//				notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-//				//				notification.fireDate = NSDate() // todo item due date (when notification will be fired)
-//				notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-//				notification.userInfo = ["UUID": NSUUID().UUIDString, ] // assign a unique identifier to the notification so that we can retrieve it later
-//				notification.category = "TODO_CATEGORY"
-//				UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-
 			}
 	}
 	
@@ -186,8 +203,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "GiverScreen" {
 			if let view = segue.destinationViewController as? GiveViewController {
-				view.name?.text = self.userModel?.name
-				view.ProfileImage?.image = self.userModel?.image
+				view.nameValue = self.userModel?.name
+				view.profileImageURL = self.userModel?.imageUrl
+				
 			}
 		}
 	}
@@ -227,9 +245,15 @@ class TimeLineCell : UITableViewCell {
 class UserModel {
 	let name: String
 	let lastDonated: String
-	let image: UIImage
-	init(name: String, lastDonated: String, image: UIImage) {
+	let image: UIImage?
+	let imageUrl: String?
+	let beaconId: String
+	let charityURLString : String
+	init(name: String, lastDonated: String, image: UIImage? = nil, imageURL: String?, beaconId: String, charityURLString: String) {
 		self.name = name
+		self.imageUrl = imageURL
+		self.beaconId = beaconId
+		self.charityURLString = charityURLString
 		self.image = image
 		self.lastDonated = lastDonated
 		
