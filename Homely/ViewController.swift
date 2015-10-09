@@ -63,7 +63,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 		
 		locationManager.startUpdatingLocation()
 
+		let urlString = "http://homely-webapi.herokuapp.com/api/donations/?giver=\(facebookId)"
 		
+		
+		if let url = NSURL(string: urlString) {
+			let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+				if let nData = data {
+					let json = JSON(data: nData)
+					let userDictArray = json["results"].arrayValue
+						for userDict in userDictArray {
+							let user = UserModel(name: userDict["reciever"]["name"].stringValue ?? "", lastDonated: userDict["donation_date"].stringValue ?? "", image: nil, imageURL: userDict["reciever"]["photo"].stringValue ?? "", beaconId: userDict["reciever"]["beacon_id"].stringValue ?? "", charityURLString: userDict["reciever"]["charity"].stringValue ?? "", targetPercentage: userDict["reciever"]["target_percentage"].floatValue ?? 0)
+							let userModelsCopy = self.userModels
+							self.userModels = userModelsCopy + [user]
+							dispatch_async(dispatch_get_main_queue(),{
+								
+								self.tableview.reloadData()
+								
+							})
+
+						}
+						
+					
+					
+					
+				}
+			}
+			task.resume()
+		}
 //		self.performSegueWithIdentifier("GiverScreen", sender: self)
 		
 	}
@@ -87,7 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 						if let nData = data {
 							let json = JSON(data: nData)
 							if let userDict = json["results"].arrayValue.first {
-								let user = UserModel(name: userDict["name"].stringValue ?? "", lastDonated: userDict["last_donated"].stringValue ?? "", image: nil, imageURL: userDict["photo"].stringValue ?? "", beaconId: userDict["beacon_id"].stringValue ?? "", charityURLString: userDict["charity"].stringValue ?? "")
+								let user = UserModel(name: userDict["name"].stringValue ?? "", lastDonated: userDict["last_donated"].stringValue ?? "", image: nil, imageURL: userDict["photo"].stringValue ?? "", beaconId: userDict["beacon_id"].stringValue ?? "", charityURLString: userDict["charity"].stringValue ?? "", targetPercentage: userDict["target_percentage"].floatValue ?? 0 )
 								self.userModel = user
 								dispatch_async(dispatch_get_main_queue(),{
 									
@@ -116,7 +142,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 			reuseCell.name?.text = userModels[indexPath.row].name
 			reuseCell.lastDonationLabel?.text = userModels[indexPath.row].lastDonated
 			reuseCell.profileImage?.image = userModels[indexPath.row].image
-			reuseCell.horizontalConstraint.constant = -50
+			reuseCell.horizontalConstraint.constant = -150 * CGFloat(userModels[indexPath.row].targetPercentage)
 			
 			return reuseCell
 		}
@@ -124,7 +150,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 		cell.name?.text = userModels[indexPath.row].name
 		cell.lastDonationLabel?.text = userModels[indexPath.row].lastDonated
 		cell.profileImage?.image = userModels[indexPath.row].image
-		cell.horizontalConstraint.constant = -50
+		cell.horizontalConstraint.constant = -150 * CGFloat(userModels[indexPath.row].targetPercentage)
 		
 		return cell
 	}
@@ -205,7 +231,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 			if let view = segue.destinationViewController as? GiveViewController {
 				view.nameValue = self.userModel?.name
 				view.profileImageURL = self.userModel?.imageUrl
-				
+				view.recieverId = self.userModel?.beaconId
+				view.userModel = self.userModel
 			}
 		}
 	}
@@ -248,9 +275,11 @@ class UserModel {
 	let image: UIImage?
 	let imageUrl: String?
 	let beaconId: String
+	let targetPercentage: Float
 	let charityURLString : String
-	init(name: String, lastDonated: String, image: UIImage? = nil, imageURL: String?, beaconId: String, charityURLString: String) {
+	init(name: String, lastDonated: String, image: UIImage? = nil, imageURL: String?, beaconId: String, charityURLString: String, targetPercentage: Float) {
 		self.name = name
+		self.targetPercentage = targetPercentage
 		self.imageUrl = imageURL
 		self.beaconId = beaconId
 		self.charityURLString = charityURLString
@@ -258,6 +287,10 @@ class UserModel {
 		self.lastDonated = lastDonated
 		
 	}
+}
+
+class DonationModel {
+	
 }
 
 

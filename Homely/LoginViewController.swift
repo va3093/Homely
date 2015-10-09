@@ -11,6 +11,8 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+var facebookId: String = ""
+
 class LoginViewController: UIViewController {
 	
 	@IBAction func loginWithFacebook(sender: AnyObject) {
@@ -33,8 +35,34 @@ class LoginViewController: UIViewController {
 	func getFBUserData(){
 		if((FBSDKAccessToken.currentAccessToken()) != nil){
 			FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
-				if (error == nil){
+				if let resultDict = result as? [String: AnyObject] where (error == nil){
+					
+					facebookId = resultDict["id"] as? String ?? ""
+					
 					print(result)
+					let jsonData: NSData?
+					do {
+						jsonData = try NSJSONSerialization.dataWithJSONObject(resultDict, options: .PrettyPrinted)
+					} catch _ {
+						jsonData = nil
+					}
+					let request = NSMutableURLRequest(URL: NSURL(string: "http://homely-webapi.herokuapp.com/api/givers")!)
+					request.HTTPMethod = "POST"
+					request.HTTPBody = jsonData
+					let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+						data, response, error in
+						
+						if error != nil {
+							print("error=\(error)")
+							return
+						}
+						
+						print("response = \(response)")
+						
+						let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+						print("responseString = \(responseString)")
+					}
+					task.resume()
 					self.dismissViewControllerAnimated(true, completion: nil)
 					
 				}

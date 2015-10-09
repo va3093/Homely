@@ -39,6 +39,10 @@ class GiveViewController: UIViewController, PKPaymentAuthorizationViewController
 	
 	@IBOutlet weak var shareButton: UIButton!
 	
+	var recieverId: String?
+	
+	var userModel: UserModel?
+	
 	var nameValue: String?
 	
 	var charityValue: String?
@@ -148,6 +152,30 @@ class GiveViewController: UIViewController, PKPaymentAuthorizationViewController
 	
 	func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
 		self.dismissViewControllerAnimated(true, completion: nil)
+		let resultDict = ["facebook_id": facebookId, "reciever_id": self.userModel?.beaconId ?? "", "amount": Int(self.slider.value * 100)]
+		let jsonData: NSData?
+		do {
+			jsonData = try NSJSONSerialization.dataWithJSONObject(resultDict, options: .PrettyPrinted)
+		} catch _ {
+			jsonData = nil
+		}
+		let request = NSMutableURLRequest(URL: NSURL(string: "http://homely-webapi.herokuapp.com/api/donation")!)
+		request.HTTPMethod = "POST"
+		request.HTTPBody = jsonData
+		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+			data, response, error in
+			
+			if error != nil {
+				print("error=\(error)")
+				return
+			}
+			
+			print("response = \(response)")
+			
+			let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+			print("responseString = \(responseString)")
+		}
+		task.resume()
 		self.thankyouView.hidden = false
 	}
 	@IBAction func sliderValueChanged(sender: AnyObject) {
