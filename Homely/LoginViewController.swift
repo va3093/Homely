@@ -36,13 +36,18 @@ class LoginViewController: UIViewController {
 		if((FBSDKAccessToken.currentAccessToken()) != nil){
 			FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
 				if let resultDict = result as? [String: AnyObject] where (error == nil){
-					
-					facebookId = resultDict["id"] as? String ?? ""
-					
+					var tempDict = resultDict
+					NSUserDefaults.standardUserDefaults().setValue(tempDict["id"] as? String ?? "", forKey: "kFacebookId") 
+					if let photoUrl: String = ((resultDict["picture"] as? [String: AnyObject])?["data"] as? [String: AnyObject])?["url"] as? String where ((resultDict["picture"] as? [String: AnyObject])?["data"] as? [String: AnyObject])?["is_silhouette"] as? Bool == false {
+						
+						tempDict["photo"] = photoUrl
+						
+					}
+					tempDict.removeValueForKey("picture")
 					print(result)
 					let jsonData: NSData?
 					do {
-						jsonData = try NSJSONSerialization.dataWithJSONObject(resultDict, options: .PrettyPrinted)
+						jsonData = try NSJSONSerialization.dataWithJSONObject(tempDict, options: .PrettyPrinted)
 					} catch _ {
 						jsonData = nil
 					}
@@ -63,6 +68,8 @@ class LoginViewController: UIViewController {
 						print("responseString = \(responseString)")
 					}
 					task.resume()
+					NSNotificationCenter.defaultCenter().postNotificationName("kDidLogin", object: nil)
+
 					self.dismissViewControllerAnimated(true, completion: nil)
 					
 				}

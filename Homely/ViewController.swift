@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
-	
+	var haveFoundReciever: Bool = false
 	@IBOutlet weak var segmentedControl: UISegmentedControl!
 	var userModels: [UserModel] = [
 //		UserModel(name: "David", lastDonated: "Last Donated £20, 3 Days ago", image: UIImage(named: "david") ?? UIImage()),
@@ -26,8 +26,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 
 	@IBOutlet weak var tableview: UITableView!
 	
+	deinit {
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		haveFoundReciever = false
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogin", name: "kDidLogin", object: nil)
+
 		
 		UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil))
 		
@@ -62,8 +69,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 		}
 		
 		locationManager.startUpdatingLocation()
-
-		let urlString = "http://homely-webapi.herokuapp.com/api/donations/?giver=\(facebookId)"
+		let fbId: String = NSUserDefaults.standardUserDefaults().valueForKey("kFacebookId") as? String ?? ""
+		let urlString = "http://homely-webapi.herokuapp.com/api/donations/?giver=\(fbId)"
 		
 		
 		if let url = NSURL(string: urlString) {
@@ -94,42 +101,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 		
 	}
 	
+	func didLogin() {
+		let fbId: String = NSUserDefaults.standardUserDefaults().valueForKey("kFacebookId") as? String ?? ""
+		let urlString = "http://homely-webapi.herokuapp.com/api/donations/?giver=\(fbId)"
+		
+		
+		if let url = NSURL(string: urlString) {
+			let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+				if let nData = data {
+					let json = JSON(data: nData)
+					let userDictArray = json["results"].arrayValue
+					for userDict in userDictArray {
+						let user = UserModel(name: userDict["reciever"]["name"].stringValue ?? "", lastDonated: userDict["donation_date"].stringValue ?? "", image: nil, imageURL: userDict["reciever"]["photo"].stringValue ?? "", beaconId: userDict["reciever"]["beacon_id"].stringValue ?? "", charityURLString: userDict["reciever"]["charity"].stringValue ?? "", targetPercentage: userDict["reciever"]["target_percentage"].floatValue ?? 0)
+						let userModelsCopy = self.userModels
+						self.userModels = userModelsCopy + [user]
+						dispatch_async(dispatch_get_main_queue(),{
+							
+							self.tableview.reloadData()
+							
+						})
+						
+					}
+					
+					
+					
+					
+				}
+			}
+			task.resume()
+		}
+	}
+	
 	func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
 		if state == CLRegionState.Inside {
 			if let reg = region as? CLBeaconRegion {
 				manager.startRangingBeaconsInRegion(reg)
 				manager.startUpdatingLocation()
 				
-				let notification = UILocalNotification()
-				notification.alertBody = "You are near Gordon do you want to help him out. Swipte to find out more" // text that will be displayed in the notification
-				notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-				//				notification.category = "TODO_CATEGORY"
-				UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-				let urlString = "http://homely-webapi.herokuapp.com/api/receivers/?beacon_id=\(reg.minor)"
 				
-				
-				if let url = NSURL(string: urlString) {
-					let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
-						if let nData = data {
-							let json = JSON(data: nData)
-							if let userDict = json["results"].arrayValue.first {
-								let user = UserModel(name: userDict["name"].stringValue ?? "", lastDonated: userDict["last_donated"].stringValue ?? "", image: nil, imageURL: userDict["photo"].stringValue ?? "", beaconId: userDict["beacon_id"].stringValue ?? "", charityURLString: userDict["charity"].stringValue ?? "", targetPercentage: userDict["target_percentage"].floatValue ?? 0 )
-								self.userModel = user
-								dispatch_async(dispatch_get_main_queue(),{
-									
-									self.presentGiverScreen()
-									
-									
-								})
-								
-							}
-							
-							
-						}
-					}
-					task.resume()
-				}
-
 				
 			}
 		}
@@ -187,14 +196,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 	
 	func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
 		print(beacons)
-		if(beacons.count > 0) {
+		if let reg = beacons.last {
 			if beacons[0].proximity == CLProximity.Near {
-
+				
+			}
+			let urlString = "http://homely-webapi.herokuapp.com/api/receivers/?beacon_id=\(reg.minor)"
+			
+			
+			if let url = NSURL(string: urlString) {
+				let task = NSURLSession.sharedSession().dataTaskWithURL(url) {[weak self](data, response, error) in
+					if let nData = data {
+						let json = JSON(data: nData)
+						if let userDict = json["results"].arrayValue.first {
+							let user = UserModel(name: userDict["name"].stringValue ?? "", lastDonated: userDict["last_donated"].stringValue ?? "", image: nil, imageURL: userDict["photo"].stringValue ?? "", beaconId: userDict["beacon_id"].stringValue ?? "", charityURLString: userDict["charity"].stringValue ?? "", targetPercentage: userDict["target_percentage"].floatValue ?? 0 )
+							self?.userModel = user
+							dispatch_async(dispatch_get_main_queue(),{
+								if let hasFound = self?.haveFoundReciever where !hasFound{
+									let notification = UILocalNotification()
+									notification.alertBody = "You are near \(user.name) do you want to help him out. Swipe to find out more" // text that will be displayed in the notification
+									notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+									//				notification.category = "TODO_CATEGORY"
+									UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+									self?.haveFoundReciever = true
+									self?.presentGiverScreen()
+								}
+								
+								
+							})
+							
+						}
+						
+						
+					}
+				}
+				task.resume()
 			}
 
 			
 
-				
+			
 		}
 	}
 	
