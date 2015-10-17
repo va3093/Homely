@@ -152,14 +152,16 @@ class GiveViewController: UIViewController, PKPaymentAuthorizationViewController
 	
 	func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
 		self.dismissViewControllerAnimated(true, completion: nil)
-		let resultDict = ["facebook_id": facebookId, "reciever_id": self.userModel?.beaconId ?? "", "amount": Int(self.slider.value * 100)]
+		let fbId: String = NSUserDefaults.standardUserDefaults().valueForKey("kFacebookId") as? String ?? ""
+
+		let resultDict = ["facebook_id": fbId, "reciever_id": self.userModel?.beaconId ?? "", "amount": Int(self.slider.value * 100)]
 		let jsonData: NSData?
 		do {
 			jsonData = try NSJSONSerialization.dataWithJSONObject(resultDict, options: .PrettyPrinted)
 		} catch _ {
 			jsonData = nil
 		}
-		let request = NSMutableURLRequest(URL: NSURL(string: "http://homely-webapi.herokuapp.com/api/donation")!)
+		let request = NSMutableURLRequest(URL: NSURL(string: "http://homely-webapi.herokuapp.com/api/donations")!)
 		request.HTTPMethod = "POST"
 		request.HTTPBody = jsonData
 		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {

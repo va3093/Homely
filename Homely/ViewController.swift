@@ -34,7 +34,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 		super.viewDidLoad()
 		haveFoundReciever = false
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "didLogin", name: "kDidLogin", object: nil)
-
+		self.userModel = UserModel(name: "test", lastDonated: "asdf", image: nil, imageURL: nil, beaconId: "7", charityURLString: "St Mungos", targetPercentage: 0.5)
+		self.presentGiverScreen()
 		
 		UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil))
 		
@@ -69,34 +70,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 		}
 		
 		locationManager.startUpdatingLocation()
-		let fbId: String = NSUserDefaults.standardUserDefaults().valueForKey("kFacebookId") as? String ?? ""
-		let urlString = "http://homely-webapi.herokuapp.com/api/donations/?giver=\(fbId)"
-		
-		
-		if let url = NSURL(string: urlString) {
-			let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
-				if let nData = data {
-					let json = JSON(data: nData)
-					let userDictArray = json["results"].arrayValue
-						for userDict in userDictArray {
-							let user = UserModel(name: userDict["reciever"]["name"].stringValue ?? "", lastDonated: userDict["donation_date"].stringValue ?? "", image: nil, imageURL: userDict["reciever"]["photo"].stringValue ?? "", beaconId: userDict["reciever"]["beacon_id"].stringValue ?? "", charityURLString: userDict["reciever"]["charity"].stringValue ?? "", targetPercentage: userDict["reciever"]["target_percentage"].floatValue ?? 0)
-							let userModelsCopy = self.userModels
-							self.userModels = userModelsCopy + [user]
-							dispatch_async(dispatch_get_main_queue(),{
-								
-								self.tableview.reloadData()
-								
-							})
-
-						}
-						
-					
-					
-					
-				}
-			}
-			task.resume()
-		}
 //		self.performSegueWithIdentifier("GiverScreen", sender: self)
 		
 	}
@@ -172,6 +145,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
+		let fbId: String = NSUserDefaults.standardUserDefaults().valueForKey("kFacebookId") as? String ?? ""
+		let urlString = "http://homely-webapi.herokuapp.com/api/donations/?giver=\(fbId)"
+		
+		
+		if let url = NSURL(string: urlString) {
+			let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+				if let nData = data {
+					let json = JSON(data: nData)
+					let userDictArray = json["results"].arrayValue
+					for userDict in userDictArray {
+						let user = UserModel(name: userDict["reciever"]["name"].stringValue ?? "", lastDonated: userDict["donation_date"].stringValue ?? "", image: nil, imageURL: userDict["reciever"]["photo"].stringValue ?? "", beaconId: userDict["reciever"]["beacon_id"].stringValue ?? "", charityURLString: userDict["reciever"]["charity"].stringValue ?? "", targetPercentage: userDict["reciever"]["target_percentage"].floatValue ?? 0)
+						let userModelsCopy = self.userModels
+						self.userModels = userModelsCopy + [user]
+						dispatch_async(dispatch_get_main_queue(),{
+							
+							self.tableview.reloadData()
+							
+						})
+						
+					}
+					
+					
+					
+					
+				}
+			}
+			task.resume()
+		}
+
 		
 		if FBSDKAccessToken.currentAccessToken() == nil {
 			self.performSegueWithIdentifier("login", sender: self)
